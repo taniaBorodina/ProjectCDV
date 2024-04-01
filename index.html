@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Sale Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="main.js"></script>
+    <script defer src="checkout.js"></script>
+
+    <!-- Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="nav container">
+        <ul class="navbar">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#cars">Cars</a></li>
+          <li><a href="#parts">Parts</a></li>
+        </ul>
+        <!-- //cart -->
+        <i class="bx bx-shopping-bag" id="cart-icon" data-quantity="0"></i>
+        <div class="cart">
+          <h2 class="cart-title">Your Cart</h2>
+          <!-- Content -->
+          <div class="cart-content">
+            <div class="cart-box">
+              <img src="img1/img/car1.jpg" alt="" class="cart-img" />
+              <div class="detail-box">
+                <div class="cart-product-title">Car Honda</div>
+                <div class="cart-price">$60000.95</div>
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  value ="1"
+                  class="cart-quantity"
+                />
+              </div>
+              <i class="bx bx-trash-alt cart-remove"></i>
+            </div>
+          </div>
+            
+          
+          
+           
+          <div class="total">
+            <div class="total-title">Total</div>
+            <div class="total-price">0$</div>
+          </div>
+
+          <!-- Buy Button -->
+          <button type="button" class="btn-buy" id="btn_Sum">Buy</button>
+          <!-- Close Cart -->
+          <i class="bx bx-x" id="close-cart"></i>
+        </div>
+
+        <!-- Search icon-->
+        <i class="bx bx-search" id="search-icon"></i>
+        <!-- Search Box -->
+        <div class="search-box container">
+          <input type="search" name="" id="search-input" placeholder="Search here..." />
+        </div>
+      </div>
+    </header>
+    <!-- Home -->
+    <section class="home" id="home">
+      <div class="home-text">
+        <h1>
+          <span>Loking</span> To Buy a Car? <br />
+          We Have Everything You Need
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur <br />
+          adipisicing elit. Animi nisi cumque nesciunt officia molest
+        </p>
+      </div>
+    </section>
+    <!-- Car section -->
+    <section class="cars" id="cars">
+      <div class="heading">
+        <span>All Cars</span>
+        <h2>We have all types cars</h2>
+      </div>
+      <div class="cars-container">
+        <div class="box">
+          <div class="box-img">
+            <img src="./img1/img/car1.jpg" alt="" class="car-img" />
+          </div>
+          <p>2017</p>
+          <h3 class="product-title"></h3>2018 honda Civic</h3>
+          <h2 class="price">$60000</h2>
+          <a href="#" class="btn">Buy now</a>
+        </div>
+        <div class="box">
+          <div class="box-img">
+            <img src="img1/img/car2.jpg" alt="" class="car-img" />
+          </div>
+          <p>2017</p>
+          <h3 class="product-title">2018 honda Civic</h3>
+          <h2 class="price">$60000</h2>
+          <a href="#" class="btn">Buy now</a>
+        </div>
+        <div class="box">
+          <div class="box-img">
+            <img src="img1/img/car3.jpg" alt="" class="car-img" />
+          </div>
+          <p>2017</p>
+          <h3 class="product-title">2018 honda Civic</h3>
+          <h2 class="price">$60000</h2>
+          <a href="#" class="btn">Buy now</a>
+        </div>
+        <div class="box">
+          <div class="box-img">
+            <img src="img1/img/car4.jpg" alt="" class="car-img"/>
+          </div>
+          <p>2017</p>
+          <h3 class="product-title">2018 honda Civic</h3>
+          <h2 class="price">$60000</h2>
+          <a href="#" class="btn">Buy now</a>
+        </div>
+        <div class="box">
+          <div class="box-img">
+            <img src="img1/img/car5.jpg" alt="" class="car-img"/>
+          </div>
+          <p>2017</p>
+          <h3 class="product-title">2018 honda Civic</h3>
+          <h2 class="price">$60000</h2>
+          <a href="#" class="btn">Buy now</a>
+        </div>
+        <div class="box">
+          <div class="box-img">
+            <img src="img1/img/car6.jpg" alt="" class="car-img"/>
+          </div>
+          <p>2017</p>
+          <h3 class="product-title">2018 honda Civic</h3>
+          <h2 class="price">$60000</h2>
+          <a href="#" class="btn">Buy now</a>
+        </div>
+      </div>
+    </section>
+    <!-- Parts -->
+
+    <section class="parts" id="parts">
+      <div class="heading">
+        <span>What we offer</span>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur est
+          harum ullam quae quis perferendis qui et fugiat delectus temporibus,
+          error.
+        </p>
+      </div>
+      <div class="parts-container container">
+        <div class="box">
+          <img src="img1/part1.png" alt="" class="car-img"/>
+          <h3 class="product-title">Auto Spare Parts</h3>
+          <span class="price">$150.66</span>
+          <a href="#" class="btn">Add</a>
+        </div>
+        <div class="box">
+          <img src="img1/part2.png" alt="" class="car-img"/>
+          <h3 class="product-title">Auto Spare Parts</h3>
+          <span class="price">$150.66</span>
+          <a href="#" class="btn">Add</a>
+        </div>
+        <div class="box">
+          <img src="img1/part3.png" alt="" class="car-img"/>
+          <h3 class="product-title">Auto Spare Parts</h3>
+          <span class="price">$150.66</span>
+          <a href="#" class="btn">Add</a>
+        </div>
+        <div class="box">
+          <img src="img1/part4.png" alt="" class="car-img"/>
+          <h3 class="product-title">Auto Spare Parts</h3>
+          <span class="price">$150.66</span>
+          <a href="#" class="btn">Add</a>
+        </div>
+        <div class="box">
+          <img src="img1/part5.png" alt="" class="car-img"/>
+          <h3 class="product-title">Auto Spare Parts</h3>
+          <span class="price">$150.66</span>
+          <a href="#" class="btn">Add</a>
+        </div>
+        <div class="box">
+          <img src="img1/part6.png" alt="" class="car-img"/>
+          <h3 class="product-title">Auto Spare Parts</h3>
+          <span class="price">$150.66</span>
+          <a href="#" class="btn">Add</a>
+        </div>
+      </div>
+    </section>
+    <!-- ScrollRevell -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+  </body>
+</html>

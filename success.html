@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmation of purchase</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="checkout.js"></script>
+  </head>
+  <body>
+    <div class="sc-container">
+      <h1>Your order has been successfully processed!</h1>
+      <p>Your order will arrive in 14 business days.</p>
+      <img src="img1/img/success.png" alt="" />
+      <a href="#" class="sc-btn">Back To Homepage</a>
+    </div>
+     <script>
+       
+        document.addEventListener("DOMContentLoaded", function () {
+            localStorage.removeItem("formData"); // Usuniecie  danych z localStorage
+        });
+
+        document.querySelector(".sc-btn").addEventListener("click", function () {
+            localStorage.removeItem("cartItems"); // Usuńiecie danych o produktach z koszyka
+        });
+    </script>
+  </body>
+</html>
