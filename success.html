@@ -1,28 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Confirmation of purchase</title>
+    <title>Confirmation of Purchase</title>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="checkout.js"></script>
   </head>
   <body>
     <div class="sc-container">
       <h1>Your order has been successfully processed!</h1>
-      <p>Your order will arrive in 14 business days.</p>
-      <img src="img1/img/success.png" alt="" />
-      <a href="#" class="sc-btn">Back To Homepage</a>
-    </div>
-     <script>
-       
-        document.addEventListener("DOMContentLoaded", function () {
-            localStorage.removeItem("formData"); // Usuniecie  danych z localStorage
-        });
 
-        document.querySelector(".sc-btn").addEventListener("click", function () {
-            localStorage.removeItem("cartItems"); // Usuńiecie danych o produktach z koszyka
-        });
+      <h2>Order Summary:</h2>
+      <ul id="car-summary"></ul>
+
+      <h2>Summary of Payment:</h2>
+      <ul id="payment-summary"></ul>
+      <img src="img1/img/success.png" alt="" />
+      <a href="index.html" class="sc-btn">Back To Homepage</a>
+    </div>
+
+    <script>
+      const carItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const formData = JSON.parse(localStorage.getItem("formData")) || {};
+
+      const carSummaryList = document.getElementById("car-summary");
+      carItems.forEach((car) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${car.title} - ${car.price}`;
+        carSummaryList.appendChild(listItem);
+      });
+
+      const formDataSummaryList = document.getElementById("payment-summary");
+      for (const key in formData) {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${key}: ${formData[key]}`;
+        formDataSummaryList.appendChild(listItem);
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        localStorage.removeItem("formData");
+        localStorage.removeItem("cartItems");
+        localStorage.removeItem("accessoryItems");
+      });
     </script>
   </body>
 </html>

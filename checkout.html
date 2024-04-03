@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -38,6 +38,13 @@
               class="form-control"
               placeholder=""
             />
+            <label for="delivery-date" class="input-label">Delivery Date</label>
+            <input
+              type="date"
+              name="delivery-date"
+              id="delivery-date"
+              class="form-control"
+            />
           </div>
           <p>Please select method of Payments</p>
 
@@ -52,7 +59,9 @@
 
           <div class="form-group">
             <div class="form-group">
-              <button type="button" class="checkout-btn" id="checkoutButton">Checkout</button>
+              <button type="button" class="checkout-btn" id="checkoutButton">
+                Checkout
+              </button>
               <p class="error-message" style="display: none; color: red">
                 Please fill out all fields.
               </p>

@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const $checkout_btn = document.getElementById("btn_Sum");
+  const $checkoutBtn = document.getElementById("btn_Sum");
   const closeCartIcon = document.getElementById("close_cart");
   const checkoutBtn = document.querySelector(".checkout-btn");
   const errorMessage = document.querySelector(".error-message");
-  const backToHome = document.querySelector(".sc-btn");
 
-  if ($checkout_btn) {
-    $checkout_btn.addEventListener("click", () => {
+  if ($checkoutBtn) {
+    $checkoutBtn.addEventListener("click", () => {
       if (!ifCartEmpty()) {
-        window.location.href = "checkout.html"; // Przekierowanie na stronę podsumowania
+        window.location.href = "checkout.html";
       } else {
         alert("Your cart is empty");
       }
@@ -17,43 +16,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (closeCartIcon) {
     closeCartIcon.addEventListener("click", () => {
-      window.location.href = "index.html"; // Przekierowanie do koszyka
+      window.location.href = "index.html";
     });
   }
 
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", function (event) {
-      event.preventDefault(); // Zapobieganie domyślnej akcji przycisku
+      event.preventDefault();
 
-      // Pobieranie wartości pól z formularza
       const nameInput = document.getElementById("name").value;
       const addressInput = document.getElementById("address").value;
+      const deliveryDateInput = document.getElementById("delivery-date").value;
       const paymentMethod = document.querySelector(
         'input[name="payment"]:checked'
       );
-      // Walidacja imienia i nazwiska
-      const nameParts = nameInput.split(" ");
-      if (nameParts.length !== 2) {
+
+      if (!paymentMethod) {
+        errorMessage.innerText = "Please select a payment method.";
+        errorMessage.style.display = "block";
+        return;
+      }
+
+      const nameParts = nameInput.match(/\S+/g);
+      if (!nameParts || nameParts.length !== 2) {
         errorMessage.innerText =
           "Please enter your first and last name separated by a space.";
         errorMessage.style.display = "block";
         return;
       }
 
-      // Sprawdzanie czy pola są wypełnione
       if (
         nameInput.trim() !== "" &&
         addressInput.trim() !== "" &&
         paymentMethod
       ) {
-        // Ukrywanie komunikatu o błędzie
         errorMessage.style.display = "none";
-        // Zapisanie danych w localStorage
-        saveFormData(nameInput, addressInput, paymentMethod.value);
+        saveFormData(
+          nameInput,
+          addressInput,
+          deliveryDateInput,
+          paymentMethod.value
+        );
         window.location.href = "success.html";
       } else {
-        // Wyświetlanie komunikatu o błędzie
         errorMessage.style.display = "block";
+        errorMessage.innerText = "Please fill out all fields.";
       }
     });
   }
@@ -63,38 +70,83 @@ document.addEventListener("DOMContentLoaded", function () {
     return totalItems === 0;
   }
 
-  // Zapisywanie danych formularza do localStorage
-  function saveFormData(name, address, payment) {
+  function saveFormData(name, address, deliveryDate, payment) {
     localStorage.setItem(
       "formData",
-      JSON.stringify({ name, address, payment })
+      JSON.stringify({ name, address, deliveryDate, payment })
     );
   }
 
-  // Wczytywanie danych formularza z localStorage
-  function loadFormData() {
-    const formData = JSON.parse(localStorage.getItem("formData"));
-    if (formData) {
-      document.getElementById("name").value = formData.name;
-      document.getElementById("address").value = formData.address;
-      const paymentMethod = document.querySelector(
-        `input[value="${formData.payment}"]`
-      );
-      if (paymentMethod) {
-        paymentMethod.checked = true;
-      }
+  const nameInput = document.getElementById("name");
+  const addressInput = document.getElementById("address");
+  const deliveryDateInput = document.getElementById("delivery-date");
+  const paymentMethodInput = document.querySelector('input[name="payment"]');
+
+  const storedName = localStorage.getItem("name");
+  const storedAddress = localStorage.getItem("address");
+  const storedDeliveryDate = localStorage.getItem("deliveryDate");
+  const storedPaymentMethod = localStorage.getItem("paymentMethod");
+
+  if (storedName) {
+    nameInput.value = storedName;
+  }
+  if (storedAddress) {
+    addressInput.value = storedAddress;
+  }
+  if (storedDeliveryDate) {
+    deliveryDateInput.value = storedDeliveryDate;
+  }
+  if (storedPaymentMethod) {
+    const selectedPaymentMethod = document.getElementById(storedPaymentMethod);
+    if (selectedPaymentMethod) {
+      selectedPaymentMethod.checked = true;
     }
   }
 
-  // Wczytywanie danych z localStorage po załadowaniu strony
-  loadFormData();
-});
+  const checkoutButton = document.getElementById("checkoutButton");
+  if (checkoutButton) {
+    checkoutButton.addEventListener("click", function () {
+      const nameInputValue = nameInput.value.trim();
+      const addressInputValue = addressInput.value.trim();
+      const paymentMethodChecked = document.querySelector(
+        'input[name="payment"]:checked'
+      );
 
+      if (
+        nameInputValue !== "" &&
+        addressInputValue !== "" &&
+        paymentMethodChecked
+      ) {
+        nameInput.value = "";
+        addressInput.value = "";
+        deliveryDateInput.value = "";
+        paymentMethodInput.checked = false;
+        localStorage.removeItem("name");
+        localStorage.removeItem("address");
+        localStorage.removeItem("deliveryDate");
+        localStorage.removeItem("paymentMethod");
+        localStorage.removeItem("cartTotal");
+      } else {
+        errorMessage.style.display = "block";
+        errorMessage.innerText =
+          "Please fill out all fields and select a payment method.";
+      }
+    });
+  }
 
-// Nasłuchiwanie dla przycisku backToHome 
-const backToHome = document.querySelector(".sc-btn");
-if (backToHome) {
-  backToHome.addEventListener("click", () => {
-    window.location.href = "index.html";
+  nameInput.addEventListener("input", function () {
+    localStorage.setItem("name", nameInput.value);
   });
-}
+
+  addressInput.addEventListener("input", function () {
+    localStorage.setItem("address", addressInput.value);
+  });
+  deliveryDateInput.addEventListener("input", function () {
+    localStorage.setItem("deliveryDate", deliveryDateInput.value);
+  });
+  paymentMethodInput.addEventListener("change", function () {
+    if (paymentMethodInput.checked) {
+      localStorage.setItem("paymentMethod", paymentMethodInput.id);
+    }
+  });
+});
