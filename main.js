@@ -185,22 +185,21 @@ function updateTotal () {
 }
 
 // Keep Item after page refresh/ local storage
-
 function saveCartItems () {
   const cartContent = document.getElementsByClassName('cart-content')[0]
   const cartBoxes = cartContent.getElementsByClassName('cart-box')
   const cartItems = []
 
   for (let i = 0; i < cartBoxes.length; i++) {
-    cartBox = cartBoxes[i]
+    const cartBox = cartBoxes[i]
     const titleElement = cartBox.getElementsByClassName('cart-product-title')[0]
-    const priceElement = cart.getElementsByClassName('cart-price')[0]
+    const priceElement = cartBox.getElementsByClassName('cart-price')[0]
     const quantityElement = cartBox.getElementsByClassName('cart-quantity')[0]
     const carImg = cartBox.getElementsByClassName('cart-img')[0].src
 
     const item = {
       title: titleElement.innerText,
-      price: priceElement.innerText,
+      price: priceElement.innerText, 
       quantity: quantityElement.value,
       carImg
     }
@@ -208,6 +207,7 @@ function saveCartItems () {
   }
   localStorage.setItem('cartItems', JSON.stringify(cartItems))
 }
+
 
 // Loads In Cart
 

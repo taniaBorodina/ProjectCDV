@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const $checkoutBtn = document.getElementById("btn_Sum");
+  const $sumBtn = document.getElementById("btn_Sum");
   const closeCartIcon = document.getElementById("close_cart");
   const checkoutBtn = document.querySelector(".checkout-btn");
   const errorMessage = document.querySelector(".error-message");
 
-  if ($checkoutBtn) {
-    $checkoutBtn.addEventListener("click", () => {
+  if ($sumBtn) {
+    $sumBtn.addEventListener("click", () => {
       if (!ifCartEmpty()) {
         window.location.href = "checkout.html";
       } else {
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const nameInput = document.getElementById("name").value;
       const addressInput = document.getElementById("address").value;
-      const deliveryDateInput = document.getElementById("delivery-date").value;
+      const deliveryDateInput = document.getElementById("delivery-date");
       const paymentMethod = document.querySelector(
         'input[name="payment"]:checked'
       );
 
-      if (!paymentMethod) {
-        errorMessage.innerText = "Please select a payment method.";
+      if (!paymentMethod || !deliveryDateInput.value) {
+        errorMessage.innerText = "Please fill out all fields.";
         errorMessage.style.display = "block";
         return;
       }
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         saveFormData(
           nameInput,
           addressInput,
-          deliveryDateInput,
+          deliveryDateInput.value,
           paymentMethod.value
         );
         window.location.href = "success.html";
