@@ -385,28 +385,32 @@ header.shadow #search-icon {
 
 /* Responsive */
 
-@media (max-width: 1080) {
+@media (max-width: 1080px) {
   .container {
+    width: 100%; 
     margin-left: 1rem;
     margin-right: 1rem;
   }
 }
+
 @media (max-width: 991px) {
   .nav {
-    padding: 3rem 0 1rem;
+    padding: 3rem 0 1rem; 
   }
   .home-text {
     padding-left: 2rem;
   }
   .home-text h1 {
-    font-size: 2.1rem;
+    font-size: 2.1rem; 
   }
 }
+
 @media (max-width: 920px) {
   #search-icon {
     color: var(--text-color);
   }
 }
+
 @media (max-width: 768px) {
   .search-box input {
     padding: 15px;
@@ -423,7 +427,7 @@ header.shadow #search-icon {
     flex-direction: column;
     background: var(--bg-color);
     row-gap: 0.5rem;
-    text-align: center;
+    text-align: center; 
     box-shadow: 4px 4px 20px rgb(15 54 55 / 20%);
     clip-path: circle(0% at 0% 0%);
     transition: 0.6s;
@@ -439,31 +443,34 @@ header.shadow #search-icon {
     color: var(--bg-color);
   }
   .cart {
-    width: 320px;
+    width: 320px; 
   }
 }
+
 @media (max-width: 727px) {
   .heading span {
-    font-size: 0.9rem;
+    font-size: 0.9rem; 
   }
   .heading h2 {
-    font-size: 1.4rem;
+    font-size: 1.4rem; 
   }
 }
+
 @media (max-width: 360px) {
   .search-box input {
-    padding: 11px;
+    padding: 11px; 
   }
   .home {
-    min-height: 500px;
+    min-height: 500px; 
   }
   .home-text h1 {
-    font-size: 2rem;
+    font-size: 2rem; 
   }
   .home-text p br {
     display: contents;
   }
 }
+
 
 /*  ----------------------Success------------------------- */
 .sc-container {
